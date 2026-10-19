@@ -1,0 +1,168 @@
+{
+  "name": "KB16-01",
+  "vendorProductId": 3490715137,
+  "macros": [
+    "git status{KC_ENT}",
+    "git diff{KC_ENT}",
+    "git log --oneline -20{KC_ENT}",
+    "git fetch{KC_ENT}",
+    "git pull",
+    "git push",
+    "git switch -c feature/",
+    "git switch ",
+    "git stash",
+    "clear{KC_ENT}",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "layers": [
+    [
+      "C(KC_C)",
+      "C(KC_V)",
+      "C(KC_S)",
+      "C(KC_F)",
+      "C(KC_0)",
+      "C(KC_T)",
+      "C(KC_W)",
+      "C(S(KC_T))",
+      "C(KC_L)",
+      "TO(1)",
+      "A(KC_LEFT)",
+      "A(KC_RGHT)",
+      "KC_PSCR",
+      "S(G(KC_LEFT))",
+      "TO(0)",
+      "G(KC_LEFT)",
+      "G(KC_UP)",
+      "G(KC_RGHT)",
+      "S(G(KC_RGHT))",
+      "KC_NO"
+    ],
+    [
+      "C(KC_C)",
+      "C(KC_V)",
+      "C(KC_S)",
+      "C(KC_F)",
+      "C(KC_0)",
+      "C(KC_L)",
+      "C(KC_K)",
+      "C(KC_ENT)",
+      "C(KC_BSPC)",
+      "TO(2)",
+      "C(KC_SLSH)",
+      "C(S(KC_I))",
+      "KC_F2",
+      "C(KC_D)",
+      "TO(0)",
+      "C(KC_GRV)",
+      "C(KC_B)",
+      "C(KC_BSLS)",
+      "C(S(KC_F))",
+      "KC_NO"
+    ],
+    [
+      "C(S(KC_C))",
+      "C(S(KC_V))",
+      "KC_NO",
+      "C(S(KC_F))",
+      "C(KC_0)",
+      "MACRO(0)",
+      "MACRO(1)",
+      "MACRO(2)",
+      "MACRO(3)",
+      "TO(3)",
+      "MACRO(4)",
+      "MACRO(5)",
+      "MACRO(6)",
+      "MACRO(7)",
+      "TO(0)",
+      "MACRO(8)",
+      "MACRO(9)",
+      "C(KC_C)",
+      "C(KC_R)",
+      "KC_NO"
+    ],
+    [
+      "C(KC_C)",
+      "C(KC_V)",
+      "C(KC_S)",
+      "C(KC_F)",
+      "C(KC_0)",
+      "C(KC_N)",
+      "MEH(KC_D)",
+      "MEH(KC_I)",
+      "C(KC_E)",
+      "TO(0)",
+      "C(KC_L)",
+      "C(KC_B)",
+      "C(KC_I)",
+      "C(KC_K)",
+      "TO(0)",
+      "C(KC_G)",
+      "MEH(KC_LBRC)",
+      "MEH(KC_RBRC)",
+      "MEH(KC_BSLS)",
+      "KC_NO"
+    ]
+  ],
+  "encoders": [
+    [
+      [
+        "C(KC_MINS)",
+        "C(KC_EQL)"
+      ],
+      [
+        "C(KC_MINS)",
+        "C(KC_EQL)"
+      ],
+      [
+        "C(KC_MINS)",
+        "C(S(KC_EQL))"
+      ],
+      [
+        "C(KC_MINS)",
+        "C(KC_EQL)"
+      ]
+    ],
+    [
+      [
+        "C(KC_PGUP)",
+        "C(KC_PGDN)"
+      ],
+      [
+        "C(KC_PGUP)",
+        "C(KC_PGDN)"
+      ],
+      [
+        "C(KC_PGUP)",
+        "C(KC_PGDN)"
+      ],
+      [
+        "C(S(KC_TAB))",
+        "C(KC_TAB)"
+      ]
+    ],
+    [
+      [
+        "C(KC_Z)",
+        "C(S(KC_Z))"
+      ],
+      [
+        "C(KC_Z)",
+        "C(S(KC_Z))"
+      ],
+      [
+        "KC_MS_WH_DOWN",
+        "KC_MS_WH_UP"
+      ],
+      [
+        "C(KC_Z)",
+        "C(S(KC_Z))"
+      ]
+    ]
+  ]
+}

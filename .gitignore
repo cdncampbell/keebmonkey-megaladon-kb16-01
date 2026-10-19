@@ -1,0 +1,7 @@
+# Vendor archives stay on disk only; their JSON is committed under via/definitions/.
+*.rar
+*.zip
+__MACOSX/
+
+.DS_Store
+*~

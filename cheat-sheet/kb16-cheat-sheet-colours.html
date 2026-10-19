@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Megalodon Layer Colours</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: four layer cards, each drawing the real pad (4x4 keys left, two small dials over one big dial right), tinted by layer. */
+:root {
+  --bg: #eef1f5;
+  --surface: #ffffff;
+  --cap: #f6f8fa;
+  --cap-edge: #c9d1db;
+  --ink: #17202b;
+  --muted: #5a6677;
+  --line: #dbe1e8;
+  --l0: #2a68c9;
+  --l1: #c45a0c;
+  --l2: #137f56;
+  --l3: #7a45c9;
+  --run: #137f56;
+  --warn: #b03a2e;
+  --font-display: "Bricolage Grotesque", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f131a; --surface: #161c25; --cap: #1f2632; --cap-edge: #343e4e; --ink: #e7ecf3; --muted: #9ba7b8; --line: #283140;
+    --l0: #6c9ff0; --l1: #f39a4f; --l2: #4cc394; --l3: #ac8af2; --run: #4cc394; --warn: #f08070;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f131a; --surface: #161c25; --cap: #1f2632; --cap-edge: #343e4e; --ink: #e7ecf3; --muted: #9ba7b8; --line: #283140;
+  --l0: #6c9ff0; --l1: #f39a4f; --l2: #4cc394; --l3: #ac8af2; --run: #4cc394; --warn: #f08070;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-block: 28px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  gap: 22px;
+}
+
+/* Header */
+header { display: grid; gap: 14px; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 5vw, 46px);
+  line-height: 1; letter-spacing: -.02em; margin: 0; text-wrap: balance;
+}
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px 5px 6px; border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 14%, var(--surface)); color: var(--ink);
+  font-weight: 700; font-size: 13.5px;
+}
+.pill b {
+  display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--c); color: var(--surface); font-family: var(--font-mono); font-size: 11px;
+}
+.arrow { color: var(--muted); font-size: 14px; }
+.how { color: var(--muted); font-size: 14px; max-width: 70ch; margin: 0; }
+.how strong { color: var(--ink); }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* Layer cards */
+.layers { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 18px; }
+.layer {
+  --c: var(--l0);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+  container-type: inline-size;
+  break-inside: avoid;
+}
+.layer-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.layer-num {
+  font-family: var(--font-mono); font-weight: 700; font-size: 12px; color: var(--surface);
+  background: var(--c); border-radius: 6px; padding: 2px 7px; align-self: center;
+}
+.layer-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 22px; margin: 0; letter-spacing: -.01em; }
+.layer-head p { margin: 0; color: var(--muted); font-size: 13.5px; }
+
+.led {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c);
+  border: 1px solid color-mix(in srgb, var(--c) 40%, var(--line)); border-radius: 999px; padding: 3px 10px 3px 7px;
+}
+.led::before {
+  content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent), 0 0 10px var(--c);
+}
+
+/* The pad: 4 key columns, then the dial column */
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.55fr);
+  gap: 7px;
+  padding: 10px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c) 7%, var(--bg));
+}
+.cap {
+  min-width: 0;
+  min-height: 62px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 4px;
+  padding: 7px 7px 6px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--c) 9%, var(--cap));
+  border: 1px solid color-mix(in srgb, var(--c) 28%, var(--cap-edge));
+  border-bottom-width: 3px;
+}
+.cap.shared { background: var(--cap); border-color: var(--cap-edge); }
+.cap.off { background: transparent; border-style: dashed; border-bottom-width: 1px; }
+.cap.off .lbl { color: var(--muted); text-decoration: line-through; }
+.lbl { font-weight: 700; font-size: 12.5px; line-height: 1.2; overflow-wrap: anywhere; }
+.lbl.cmd { font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; }
+.ks { font-family: var(--font-mono); font-size: 10px; color: var(--muted); line-height: 1.25; overflow-wrap: anywhere; }
+.mark { color: var(--c); font-size: 10px; margin-left: 2px; }
+.mark.check { color: var(--warn); }
+.chip {
+  align-self: flex-start; justify-self: start; font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; letter-spacing: .03em;
+  padding: 1px 5px; border-radius: 4px; text-transform: uppercase;
+}
+.chip.run { background: color-mix(in srgb, var(--run) 18%, transparent); color: var(--run); }
+.chip.type { border: 1px solid var(--cap-edge); color: var(--muted); }
+.row-tag {
+  grid-column: 1 / 5; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin: -2px 0 -3px;
+}
+
+.dials {
+  /* 8 rows: a tag row above each of the 4 key rows */
+  grid-column: 5; grid-row: 1 / span 8;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 8px;
+  align-items: start; min-width: 0;
+}
+.dial { display: grid; justify-items: center; gap: 5px; text-align: center; min-width: 0; }
+.dial.big { grid-column: 1 / 3; align-self: center; }
+.knob {
+  --size: 44px;
+  width: var(--size); height: var(--size); border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--cap) 0 58%, transparent 59%),
+    repeating-conic-gradient(var(--cap-edge) 0 6deg, var(--cap) 6deg 12deg);
+  border: 2px solid color-mix(in srgb, var(--c) 45%, var(--cap-edge));
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700; color: var(--c);
+}
+.big .knob { --size: 74px; font-size: 10.5px; }
+.turn { font-size: 11px; line-height: 1.3; color: var(--ink); }
+.turn i { font-style: normal; color: var(--muted); font-family: var(--font-mono); }
+.press {
+  font-size: 10.5px; font-weight: 700; color: var(--c);
+  background: color-mix(in srgb, var(--c) 12%, transparent); border-radius: 5px; padding: 1px 6px;
+}
+
+@container (max-width: 470px) {
+  .pad { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .dials { grid-column: 1 / 5; grid-row: auto; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto; margin-top: 6px; }
+  .dial.big { grid-column: auto; order: 3; }
+  .big .knob { --size: 54px; }
+}
+
+/* Setup notes */
+.setup { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px; }
+.note { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; min-width: 0; break-inside: avoid; }
+.note h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; margin: 0 0 8px; }
+.note ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 13.5px; }
+.note code { overflow-wrap: anywhere; font-family: var(--font-mono); font-size: 12px; background: var(--cap); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.note p { margin: 0 0 6px; font-size: 13.5px; color: var(--muted); }
+
+@media print {
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --bg: #ffffff; --surface: #ffffff; --cap: #f6f8fa; --cap-edge: #c9d1db; --ink: #17202b; --muted: #5a6677; --line: #dbe1e8;
+    --l0: #2a68c9; --l1: #c45a0c; --l2: #137f56; --l3: #7a45c9; --run: #137f56; --warn: #b03a2e;
+    color-scheme: light;
+  }
+  @page { size: landscape; margin: 9mm; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 13px; }
+  /* Two landscape pages: header + Base + Cursor, then Terminal + Obsidian + setup notes */
+  .page { padding-block: 0; gap: 10px; max-width: none; }
+  header { gap: 8px; }
+  h1 { font-size: 30px; }
+  .layers { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .layer:nth-child(3) { break-before: page; }
+  .layer { padding: 10px 12px; gap: 8px; }
+  .pad { padding: 8px; gap: 5px; }
+  .cap { min-height: 46px; padding: 5px 6px 4px; }
+  .knob { --size: 38px; }
+  .big .knob { --size: 46px; }
+  .layer-head { flex-wrap: nowrap; gap: 8px; }
+  .layer-head h2 { font-size: 20px; }
+  .layer-head p { font-size: 12px; }
+  .led { padding: 2px 8px 2px 6px; font-size: 10px; white-space: nowrap; }
+  .setup { gap: 10px; }
+  .note { padding: 9px 12px; }
+  .note h3 { font-size: 15px; margin-bottom: 5px; }
+  .note ul, .note p { font-size: 12px; }
+  .note ul { gap: 2px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">KeebMonkey Megalodon · KB16-01 · 16 keys · 3 dials · 4 layers</div>
+    <h1>Megalodon Macropad Map</h1>
+    <div class="chain" id="chain"></div>
+    <p class="how">The pad lights up in the layer's colour, so you can see where you are: <strong>blue</strong> Base, <strong>orange</strong> Cursor, <strong>green</strong> Terminal, <strong>purple</strong> Obsidian. Keys that do nothing on a layer stay dark. Press the <strong>right small dial</strong> to step to the next layer, and the <strong>big dial</strong> to jump home to Base. The top row is the same on every layer.</p>
+    <div class="legend">
+      <span><span class="chip run">runs ⏎</span> safe command, presses Enter for you</span>
+      <span><span class="chip type">types</span> you check it, then press Enter</span>
+      <span><span class="mark" style="--c: var(--l3)">★</span> bind once in Obsidian</span>
+      <span><span class="mark check">?</span> confirm in Cursor</span>
+      <span><span class="ks">Meh</span> = Ctrl+Shift+Alt</span>
+    </div>
+  </header>
+
+  <section class="layers" id="layers"></section>
+
+  <section class="setup">
+    <div class="note">
+      <h3>Bind these in Obsidian</h3>
+      <p>Settings → Hotkeys, search the command, click the plus, then press the pad key.</p>
+      <ul>
+        <li>Daily notes: Open today's daily note <code>Meh+D</code></li>
+        <li>Templates: Insert template <code>Meh+I</code></li>
+        <li>Toggle left sidebar <code>Meh+[</code></li>
+        <li>Toggle right sidebar <code>Meh+]</code></li>
+        <li>Split right <code>Meh+\</code></li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Why the terminal layer is different</h3>
+      <ul>
+        <li>Copy, paste and find use <code>Ctrl+Shift</code>, since <code>Ctrl+C</code> stops the running command.</li>
+        <li>Save is off. <code>Ctrl+S</code> freezes Ptyxis output; <code>Ctrl+Q</code> unfreezes it.</li>
+        <li>The big dial scrolls, because <code>Ctrl+Z</code> suspends the running program.</li>
+        <li>Clear is typed as <code>clear</code> so Cursor's <code>Ctrl+L</code> chat can't grab it.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Check in Cursor</h3>
+      <p>These follow the VS Code Linux defaults. If one misfires, reassign it in Cursor or on the pad.</p>
+      <ul>
+        <li>Format document <code>Ctrl+Shift+I</code></li>
+        <li>Toggle sidebar <code>Ctrl+B</code></li>
+      </ul>
+      <p style="margin-top:10px">Layout file: <code>cdncampbell-KB16_01.layout.json</code>. The layer colours come from the custom QMK firmware, not VIA. Reload the layout in VIA after flashing.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const GUI_TOP = [["Copy","Ctrl+C"],["Paste","Ctrl+V"],["Save","Ctrl+S"],["Find","Ctrl+F"]];
+const TERM_TOP = [["Copy","Ctrl+Shift+C"],["Paste","Ctrl+Shift+V"],["Save","off here",{off:true}],["Find","Ctrl+Shift+F"]];
+const UNDO = {ccw:"Undo", cw:"Redo"};
+
+const LAYERS = [
+  { name:"Base", led:"Blue", tag:"Browser, windows, screenshots", color:"--l0", top:GUI_TOP,
+    rows:[
+      ["Browser", [["New tab","Ctrl+T"],["Close tab","Ctrl+W"],["Reopen tab","Ctrl+Shift+T"],["Address bar","Ctrl+L"]]],
+      ["Navigate", [["Back","Alt+←"],["Forward","Alt+→"],["Screenshot","PrtSc"],["Window ◂ monitor","Shift+Super+←"]]],
+      ["Windows", [["Tile left","Super+←"],["Maximize","Super+↑"],["Tile right","Super+→"],["Window ▸ monitor","Shift+Super+→"]]],
+    ], big:UNDO },
+  { name:"Cursor", led:"Orange", tag:"Built-in AI, editing, panels", color:"--l1", top:GUI_TOP,
+    rows:[
+      ["AI", [["AI chat","Ctrl+L"],["Inline edit","Ctrl+K"],["Accept","Ctrl+Enter"],["Reject","Ctrl+Bksp"]]],
+      ["Edit", [["Comment","Ctrl+/"],["Format","Ctrl+Shift+I",{check:true}],["Rename","F2"],["Next match","Ctrl+D"]]],
+      ["Panels", [["Terminal","Ctrl+`"],["Sidebar","Ctrl+B",{check:true}],["Split editor","Ctrl+\\"],["Search files","Ctrl+Shift+F"]]],
+    ], big:UNDO },
+  { name:"Terminal", led:"Green", tag:"Git and shell, Ptyxis or Cursor", color:"--l2", top:TERM_TOP,
+    rows:[
+      ["Inspect", [["git status","",{run:true}],["git diff","",{run:true}],["git log","",{run:true,sub:"--oneline -20"}],["git fetch","",{run:true}]]],
+      ["Sync + branch", [["git pull","",{type:true}],["git push","",{type:true}],["git switch ‑c","",{type:true,sub:"feature/"}],["git switch","",{type:true}]]],
+      ["Shell", [["git stash","",{type:true}],["clear","",{run:true}],["Cancel","Ctrl+C"],["History","Ctrl+R"]]],
+    ], big:{ccw:"Scroll down", cw:"Scroll up"} },
+  { name:"Obsidian", led:"Purple", tag:"Notes, editing, view", color:"--l3", top:GUI_TOP,
+    rows:[
+      ["Notes", [["New note","Ctrl+N"],["Daily note","Meh+D",{star:true}],["Template","Meh+I",{star:true}],["Edit / read","Ctrl+E"]]],
+      ["Format", [["Checkbox","Ctrl+L"],["Bold","Ctrl+B"],["Italic","Ctrl+I"],["Link","Ctrl+K"]]],
+      ["View", [["Graph","Ctrl+G"],["Left sidebar","Meh+[",{star:true}],["Right sidebar","Meh+]",{star:true}],["Split right","Meh+\\",{star:true}]]],
+    ], big:UNDO },
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function cap([label, keys, o = {}], shared) {
+  const cls = ["cap", shared && "shared", o.off && "off"].filter(Boolean).join(" ");
+  const cmd = o.run || o.type;
+  const marks = (o.star ? '<span class="mark">★</span>' : "") + (o.check ? '<span class="mark check">?</span>' : "");
+  const bottom = cmd
+    ? (o.sub ? `<span class="ks">${esc(o.sub)}</span>` : "") +
+      (o.run ? '<span class="chip run">runs ⏎</span>' : '<span class="chip type">types</span>')
+    : `<span class="ks">${esc(keys)}</span>`;
+  return `<div class="${cls}"><span class="lbl${cmd ? " cmd" : ""}">${esc(label)}${marks}</span><div style="display:grid;gap:3px">${bottom}</div></div>`;
+}
+
+function dial(cls, face, ccw, cw, press) {
+  return `<div class="dial ${cls}"><div class="knob">${face}</div>
+    <div class="turn"><i>↺</i> ${esc(ccw)} &nbsp;<i>↻</i> ${esc(cw)}</div>
+    <span class="press">press: ${esc(press)}</span></div>`;
+}
+
+document.getElementById("chain").innerHTML = LAYERS.map((l, i) =>
+  `<span class="pill" style="--c: var(${l.color})"><b>${i}</b>${l.name}</span>`
+).join('<span class="arrow">→</span>') + '<span class="arrow">↺ back to Base</span>';
+
+document.getElementById("layers").innerHTML = LAYERS.map((l, i) => {
+  const next = LAYERS[(i + 1) % LAYERS.length].name;
+  const keys = [
+    `<div class="row-tag">Every layer</div>`,
+    ...l.top.map(k => cap(k, true)),
+    ...l.rows.flatMap(([tag, row]) => [`<div class="row-tag">${tag}</div>`, ...row.map(k => cap(k, false))]),
+  ].join("");
+  const dials = `<div class="dials">
+      ${dial("", "ZOOM", "out", "in", "reset")}
+      ${dial("", "TABS", "prev", "next", next + " →")}
+      ${dial("big", l.name === "Terminal" ? "SCROLL" : "UNDO", l.big.ccw, l.big.cw, i === 0 ? "home" : "home to Base")}
+    </div>`;
+  return `<article class="layer" style="--c: var(${l.color})">
+    <div class="layer-head"><span class="layer-num">L${i}</span><h2>${l.name}</h2><p>${l.tag}</p><span class="led">${l.led}</span></div>
+    <div class="pad">${keys}${dials}</div>
+  </article>`;
+}).join("");
+</script>
+</body>
+</html>
