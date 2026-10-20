@@ -8,7 +8,7 @@ Layers are colour-coded on the pad's LEDs and in the cheat sheet.
 
 | # | Layer    | Colour | Used for                                |
 |---|----------|--------|-----------------------------------------|
-| 0 | Base     | blue   | Browser, window snapping, screenshots   |
+| 0 | Base     | blue   | OpenWhispr, window snapping, screenshots |
 | 1 | Cursor   | orange | AI, editing, panels                     |
 | 2 | Terminal | green  | Shell-safe copy/paste, git macros M0-M9 |
 | 3 | Obsidian | purple | Notes, editing, view                    |

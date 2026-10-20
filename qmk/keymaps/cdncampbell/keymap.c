@@ -16,10 +16,10 @@ enum layer_names {
 // Matrix columns 0-3 are the 4x4 keys; column 4 is the press on each dial
 // (small top-left, small right, big). The fourth row has no dial, so it has four keys.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // Browser, windows, screenshots
+    // OpenWhispr (dictation, voice assistant, meeting, translation), windows, screenshots
     [_BASE] = LAYOUT(
         C(KC_C),    C(KC_V),    C(KC_S),       C(KC_F),       C(KC_0),
-        C(KC_T),    C(KC_W),    C(S(KC_T)),    C(KC_L),       TO(_CURSOR),
+        C(S(KC_D)), C(S(KC_SPC)), C(S(KC_M)),  C(S(KC_N)),    TO(_CURSOR),
         A(KC_LEFT), A(KC_RGHT), KC_PSCR,       S(G(KC_LEFT)), TO(_BASE),
         G(KC_LEFT), G(KC_UP),   G(KC_RGHT),    S(G(KC_RGHT))
     ),
