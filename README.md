@@ -22,14 +22,14 @@ Pressing the small right dial steps to the next layer (0 → 1 → 2 → 3 → 0
 | `via/cdncampbell-KB16_01.layout.json` | The layout as VIA saves it: keys, dials and macros. This is the source of truth. |
 | `via/definitions/kb16VIA.json` | DOIO's VIA keyboard definition, for when VIA doesn't detect the board. |
 | `qmk/keymaps/cdncampbell/` | The same layout as a QMK keymap, plus the per-layer LED colours. |
-| `cheat-sheet/` | Printable layer reference (HTML source and PDF). |
+| `cheat-sheet/` | Printable layer reference (HTML source and PDF). The desktop version, a GNOME Shell extension, lives in [kb16-cheatsheet-gnome](https://github.com/cdncampbell/kb16-cheatsheet-gnome). |
 | `firmware/doio-stock-firmware.bin` | Dump of the factory firmware, for going back to stock. |
 
 ## Changing the layout
 
 1. Remap in [VIA](https://usevia.app) and use **Save + Load → Save** to export over `via/cdncampbell-KB16_01.layout.json`.
 2. If the change should survive a reflash, update `qmk/keymaps/cdncampbell/keymap.c` to match.
-3. If a key's meaning changed, update the cheat sheet and re-export the PDF.
+3. If a key's meaning changed, update the cheat sheet and re-export the PDF. The desktop cheat sheet keeps its own copy of the layer data, so update `tools/build-sheet.py` in kb16-cheatsheet-gnome too and run `make install` there.
 4. Commit.
 
 To put a saved layout back on the board, use **Save + Load → Load** in VIA.
