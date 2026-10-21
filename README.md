@@ -22,8 +22,9 @@ Pressing the small right dial steps to the next layer (0 → 1 → 2 → 3 → 0
 | `via/cdncampbell-KB16_01.layout.json` | The layout as VIA saves it: keys, dials and macros. This is the source of truth. |
 | `via/definitions/kb16VIA.json` | DOIO's VIA keyboard definition, for when VIA doesn't detect the board. |
 | `qmk/keymaps/cdncampbell/` | The same layout as a QMK keymap, plus the per-layer LED colours. |
-| `cheat-sheet/` | Printable layer reference (HTML source and PDF). A desktop version is the bundled example in [gnome-wayland-text-backdrop](https://github.com/cdncampbell/gnome-wayland-text-backdrop), a GNOME Shell extension that shows text on the desktop. |
-| `firmware/doio-stock-firmware.bin` | Dump of the factory firmware, for going back to stock. |
+| `cheat-sheet/` | Printable layer reference (HTML source and PDF). A desktop version is in `examples/kb16/` of [gnome-wayland-text-backdrop](https://github.com/cdncampbell/gnome-wayland-text-backdrop), a GNOME Shell extension that shows text on the desktop. |
+
+The factory firmware isn't included. It's DOIO's code, so I keep my dump of it privately, for going back to stock.
 
 ## Changing the layout
 

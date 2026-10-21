@@ -5,3 +5,6 @@ __MACOSX/
 
 .DS_Store
 *~
+
+# DOIO factory firmware dumps are DOIO's code; keep them out of this public repo.
+firmware/
